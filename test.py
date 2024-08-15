@@ -1,6 +1,8 @@
 import unittest
 from Piece import Piece
 from Ajedrez.Queen import Queen
+from Ajedrez.King import King
+from Ajedrez.Rook import Rook
 
 
 class TestPiece(unittest.TestCase):
@@ -23,20 +25,70 @@ class TestPiece(unittest.TestCase):
 
 class TestQueen(unittest.TestCase):
     def setUp(self):
-        self.queen_white = Queen(3, 3, 'white')
-        self.queen_black = Queen(5, 5, 'black')
+        self.queen_white = Queen(3, 0, 'white')
+        self.queen_black = Queen(3, 7, 'black')
 
     def test_initial_position_white(self):
-        self.assertEqual(self.queen_white.get_position(), (3, 3))
+        self.assertEqual(self.queen_white.get_position(), (3, 0))
 
     def test_initial_position_black(self):
-        self.assertEqual(self.queen_black.get_position(), (5, 5))
+        self.assertEqual(self.queen_black.get_position(), (3, 7))
 
     def test_get_color_black(self):
         self.assertEqual(self.queen_black.get_color(), 'black')
 
     def test_get_icon_white(self):
         self.assertEqual(self.queen_white.get_icon(), 'QW')
+
+
+class TestKing(unittest.TestCase):
+
+    def setUp(self):
+        self.king_white = King(4, 0, 'white')
+        self.king_black = King(4, 7, 'black')
+
+    def test_initial_position_white(self):
+        self.assertEqual(self.king_white.get_position(), (4, 0))
+
+    def test_initial_position_black(self):
+        self.assertEqual(self.king_black.get_position(), (4, 7))
+
+    def test_get_color_black(self):
+        self.assertEqual(self.king_black.get_color(), 'black')
+
+    def test_get_color_white(self):
+        self.assertEqual(self.king_white.get_color(), 'white')
+
+    def test_get_icon_white(self):
+        self.assertEqual(self.king_white.get_icon(), 'KW')
+
+    def test_get_icon_black(self):
+        self.assertEqual(self.king_black.get_icon(), 'KB')
+
+
+class TestRook(unittest.TestCase):
+
+    def setUp(self):
+        self.rook_white = Rook(1, 0, 'white')
+        self.rook_black = Rook(7, 7, 'black')
+
+    def test_initial_position_white(self):
+        self.assertEqual(self.rook_white.get_position(), (1, 0))
+
+    def test_initial_position_black(self):
+        self.assertEqual(self.rook_black.get_position(), (7, 7))
+
+    def test_get_color_black(self):
+        self.assertEqual(self.rook_black.get_color(), 'black')
+
+    def test_get_color_white(self):
+        self.assertEqual(self.rook_white.get_color(), 'white')
+
+    def test_get_icon_white(self):
+        self.assertEqual(self.rook_white.get_icon(), 'RW')
+
+    def test_get_icon_black(self):
+        self.assertEqual(self.rook_black.get_icon(), 'RB')
 
 
 if __name__ == '__main__':
