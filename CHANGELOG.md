@@ -13,3 +13,9 @@ Added unit tests to verify functionality for both classes.
 
 The King and Rook classes were implemented, defining their basic attributes and methods.
 Unit tests were added to verify the functionality of both classes.
+
+## [15-08-2024]
+
+### Added
+
+Implemented classes Bishop and Horse, their attributes and methods, Added Unit tests.
