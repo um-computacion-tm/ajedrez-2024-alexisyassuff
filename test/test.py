@@ -6,7 +6,7 @@ from Ajedrez.Rook import Rook
 from Ajedrez.Bishop import Bishop
 from Ajedrez.Horse import Horse
 from Ajedrez.Pawn import Pawn
-
+from Ajedrez.Board import Board
 
 
 class TestPiece(unittest.TestCase):
@@ -143,10 +143,9 @@ class TestBishop(unittest.TestCase):
 
     def test_get_icon_black(self):
         self.assertEqual(self.rook_black.get_icon(), 'BB')
-        
+
 
 class TestPawn(unittest.TestCase):
-
     def setUp(self):
         self.pawn_white = Pawn(0, 1, 'white')
         self.pawn_black = Pawn(6, 3, 'black')
@@ -169,6 +168,29 @@ class TestPawn(unittest.TestCase):
     def test_get_icon_black(self):
         self.assertEqual(self.pawn_black.get_icon(), 'PB')
 
+
+class TestBoard(unittest.TestCase):
+    def test_board_initialization(self):
+        board = Board()
+        # Asegúrate de que el tablero esté vacío
+        for row in board.board:
+            for cell in row:
+                self.assertIsNone(cell)
+
+    def test_place_piece(self):
+        board = Board()
+        piece = Piece(0, 0, 'white', 'P')
+        board.place_piece(piece)
+        self.assertEqual(board.board[0][0], piece)
+
+    def test_place_multiple_pieces(self):
+        board = Board()
+        piece1 = Piece(0, 0, 'white', 'P')
+        piece2 = Piece(7, 7, 'black', 'P')
+        board.place_piece(piece1)
+        self.assertEqual(board.board[0][0], piece1)
+        board.place_piece(piece2)
+        self.assertEqual(board.board[7][7], piece2)
 
 
 if __name__ == '__main__':

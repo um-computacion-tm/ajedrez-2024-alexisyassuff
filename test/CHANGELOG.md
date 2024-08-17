@@ -26,3 +26,11 @@ Implemented classes Bishop and Horse, their attributes and methods, Added Unit t
 
 With the creation of the Peon class, the definition of all the pieces with their respective attributes and unit tests was completed.
 The file structure was organized for greater clarity and maintainability.
+
+## [17-08-2024]
+
+### Added
+
+Implemented the Board class, initializing an 8x8 matrix with empty positions.
+Added functionality to place pieces on the board using the place_piece method.
+Created unit tests to verify the correct initialization of the board and the proper placement of pieces.
