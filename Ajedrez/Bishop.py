@@ -1,4 +1,4 @@
-from Piece import Piece
+from Ajedrez.Piece import Piece
 
 
 class Bishop(Piece):
