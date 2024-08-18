@@ -34,3 +34,11 @@ The file structure was organized for greater clarity and maintainability.
 Implemented the Board class, initializing an 8x8 matrix with empty positions.
 Added functionality to place pieces on the board using the place_piece method.
 Created unit tests to verify the correct initialization of the board and the proper placement of pieces.
+
+## [18-08-2024]
+
+### Added
+
+Implemented move_piece in Board: Added the ability to move a piece on the board, including handling piece capture.
+Enhanced Pawn functionality: Added movement logic specific to the Pawn piece, including initial double-step and single-step movements.
+Created unit tests for Board.move_piece and Pawn: Verified valid and invalid movements of the Pawn piece on the board.

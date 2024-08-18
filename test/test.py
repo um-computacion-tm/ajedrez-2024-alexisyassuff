@@ -193,5 +193,29 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.board[7][7], piece2)
 
 
+class TestBoardMovePiece(unittest.TestCase):
+    def setUp(self):
+        self.board = Board()
+        self.pawn = Pawn(1, 1, 'white')
+        self.queen = Queen(3, 0, 'black')
+        self.board.place_piece(self.pawn)
+        self.board.place_piece(self.queen)
+
+    def test_valid_move_pawn(self):
+        # Mover el peón a una posición válida
+        result = self.board.move_piece(self.pawn, 1, 2)
+        self.assertTrue(result)
+        self.assertIsNone(self.board.board[1][1])  # Posición antigua vacía
+        # Peón en nueva posición
+        self.assertEqual(self.board.board[2][1], self.pawn)
+
+    def test_invalid_move_pawn(self):
+        # Intentar mover el peón a una posición inválida (por ejemplo, fuera del tablero)
+        result = self.board.move_piece(self.pawn, 1, 8)
+        self.assertFalse(result)
+        # Peón permanece en la posición original
+        self.assertEqual(self.board.board[1][1], self.pawn)
+
+
 if __name__ == '__main__':
     unittest.main()
