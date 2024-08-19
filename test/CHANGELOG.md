@@ -42,3 +42,10 @@ Created unit tests to verify the correct initialization of the board and the pro
 Implemented move_piece in Board: Added the ability to move a piece on the board, including handling piece capture.
 Enhanced Pawn functionality: Added movement logic specific to the Pawn piece, including initial double-step and single-step movements.
 Created unit tests for Board.move_piece and Pawn: Verified valid and invalid movements of the Pawn piece on the board.
+
+## [19-08-2024]
+
+### Added
+
+Added methods to the Board class for printing the board, retrieving pieces by position, and converting chess notation to board coordinates.
+Unit tests were created to verify the functionality of these methods.

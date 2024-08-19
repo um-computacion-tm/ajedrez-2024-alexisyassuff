@@ -24,3 +24,26 @@ class Board:
             piece.set_position(new_x, new_y)
             return True
         return False
+
+    def print_board(self):
+        print("    A    B    C    D    E    F    G    H")
+        print("  +---------------------------------------+")
+        for i in range(8):
+            print(f"{8 - i} |", end=" ")
+            for j in range(8):
+                piece = self.board[i][j]
+                if piece:
+                    print(f"{piece.get_icon():<4}", end=" ")
+                else:
+                    print(".   ", end=" ")
+            print("|")
+            print("  +---------------------------------------+")
+        print("    A    B    C    D    E    F    G    H")
+
+    def get_piece_at(self, x, y):
+        return self.board[y][x]
+
+    def get_position_from_notation(self, notation):
+        col = ord(notation[0]) - ord('a')
+        row = 8 - int(notation[1])
+        return col, row

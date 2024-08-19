@@ -217,5 +217,34 @@ class TestBoardMovePiece(unittest.TestCase):
         self.assertEqual(self.board.board[1][1], self.pawn)
 
 
+class TestBoardMethods(unittest.TestCase):
+
+    def setUp(self):
+        self.board = Board()
+        self.pawn = Pawn(1, 1, 'white')
+        self.board.place_piece(self.pawn)
+
+    def test_get_piece_at(self):
+        piece = self.board.get_piece_at(1, 1)
+        self.assertEqual(piece, self.pawn)
+
+    def test_get_piece_at_empty_square(self):
+        piece = self.board.get_piece_at(0, 0)
+        self.assertIsNone(piece)
+
+    def test_get_position_from_notation(self):
+        col, row = self.board.get_position_from_notation('a1')
+        self.assertEqual((col, row), (0, 7))
+
+        col, row = self.board.get_position_from_notation('h8')
+        self.assertEqual((col, row), (7, 0))
+
+        col, row = self.board.get_position_from_notation('d4')
+        self.assertEqual((col, row), (3, 4))
+
+    def test_print_board(self):
+        self.board.print_board()
+
+
 if __name__ == '__main__':
     unittest.main()
