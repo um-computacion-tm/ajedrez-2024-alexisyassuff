@@ -24,7 +24,7 @@ Implemented classes Bishop and Horse, their attributes and methods, Added Unit t
 
 ### Added
 
-With the creation of the Peon class, the definition of all the pieces with their respective attributes and unit tests was completed.
+With the creation of the Pawn class, the definition of all the pieces with their respective attributes and unit tests was completed.
 The file structure was organized for greater clarity and maintainability.
 
 ## [17-08-2024]
@@ -49,3 +49,11 @@ Created unit tests for Board.move_piece and Pawn: Verified valid and invalid mov
 
 Added methods to the Board class for printing the board, retrieving pieces by position, and converting chess notation to board coordinates.
 Unit tests were created to verify the functionality of these methods.
+
+## [20-08-2024]
+
+### Added
+
+Pawn class movement rules have been implemented, including initial moves, diagonal captures, and restrictions.
+Tests have been added to ensure that these rules work correctly
+All this, considering the refactoring proposed by CodeClimate when dealing with complex functions due to their large size
