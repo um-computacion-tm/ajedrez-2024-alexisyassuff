@@ -26,8 +26,19 @@ class Board:
         return False
 
     def print_board(self):
+        self.mark_superior()
+        self.for_print_board()
+        self.mark_inferior()
+
+    def mark_superior(self):
         print("    A    B    C    D    E    F    G    H")
         print("  +---------------------------------------+")
+
+    def mark_inferior(self):
+        print("  +---------------------------------------+")
+        print("    A    B    C    D    E    F    G    H")
+
+    def for_print_board(self):
         for i in range(8):
             print(f"{8 - i} |", end=" ")
             for j in range(8):
@@ -37,8 +48,6 @@ class Board:
                 else:
                     print(".   ", end=" ")
             print("|")
-            print("  +---------------------------------------+")
-        print("    A    B    C    D    E    F    G    H")
 
     def get_piece_at(self, x, y):
         return self.board[y][x]

@@ -57,3 +57,9 @@ Unit tests were created to verify the functionality of these methods.
 Pawn class movement rules have been implemented, including initial moves, diagonal captures, and restrictions.
 Tests have been added to ensure that these rules work correctly
 All this, considering the refactoring proposed by CodeClimate when dealing with complex functions due to their large size
+
+## [21-08-2024]
+
+### Added
+
+Due to CodeClimate's proposal, the print_board method of the Board class has been refactored by splitting its logic into three separate methods: mark_superior, mark_inferior and for_print_board, which improves the clarity and maintainability of the code.
