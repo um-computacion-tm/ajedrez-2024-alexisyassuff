@@ -40,14 +40,19 @@ class Board:
 
     def for_print_board(self):
         for i in range(8):
-            print(f"{8 - i} |", end=" ")
-            for j in range(8):
-                piece = self.board[i][j]
-                if piece:
-                    print(f"{piece.get_icon():<4}", end=" ")
-                else:
-                    print(".   ", end=" ")
-            print("|")
+            self.print_row(i)
+
+    def print_row(self, row_index):
+        print(f"{8 - row_index} |", end=" ")
+        for j in range(8):
+            self.print_piece(self.board[row_index][j])
+        print("|")
+
+    def print_piece(self, piece):
+        if piece:
+            print(f"{piece.get_icon():<4}", end=" ")
+        else:
+            print(".   ", end=" ")
 
     def get_piece_at(self, x, y):
         return self.board[y][x]

@@ -26,6 +26,10 @@ class TestPiece(unittest.TestCase):
     def test_get_icon(self):
         self.assertEqual(self.piece.get_icon(), 'P')
 
+    def test_is_valid_move_not_implemented(self):
+        with self.assertRaises(NotImplementedError):
+            self.piece.is_valid_move(5, 5)
+
 
 class TestQueen(unittest.TestCase):
     def setUp(self):
@@ -213,7 +217,6 @@ class TestPawn(unittest.TestCase):
 class TestBoard(unittest.TestCase):
     def test_board_initialization(self):
         board = Board()
-        # Asegúrate de que el tablero esté vacío
         for row in board.board:
             for cell in row:
                 self.assertIsNone(cell)
@@ -243,18 +246,14 @@ class TestBoardMovePiece(unittest.TestCase):
         self.board.place_piece(self.queen)
 
     def test_valid_move_pawn(self):
-        # Mover el peón a una posición válida
         result = self.board.move_piece(self.pawn, 1, 2)
         self.assertTrue(result)
-        self.assertIsNone(self.board.board[1][1])  # Posición antigua vacía
-        # Peón en nueva posición
+        self.assertIsNone(self.board.board[1][1])
         self.assertEqual(self.board.board[2][1], self.pawn)
 
     def test_invalid_move_pawn(self):
-        # Intentar mover el peón a una posición inválida (por ejemplo, fuera del tablero)
         result = self.board.move_piece(self.pawn, 1, 8)
         self.assertFalse(result)
-        # Peón permanece en la posición original
         self.assertEqual(self.board.board[1][1], self.pawn)
 
 

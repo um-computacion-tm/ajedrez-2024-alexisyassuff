@@ -63,3 +63,13 @@ All this, considering the refactoring proposed by CodeClimate when dealing with 
 ### Added
 
 Due to CodeClimate's proposal, the print_board method of the Board class has been refactored by splitting its logic into three separate methods: mark_superior, mark_inferior and for_print_board, which improves the clarity and maintainability of the code.
+
+## [22-08-2024] and [23-08-2024]
+
+### Added
+
+Refactor Pawn Movement Logic and Print Board
+Refactored is_valid_move method: Separated logic for white and black pawns into distinct methods to enhance readability and maintainability.
+Added helper methods: Introduced methods like is_initial_move, is_forward_move, is_capture_move, and others to simplify the pawn movement logic.
+Fixed code smells in print_board: Refactored print_board method to improve code quality and reduce complexity.
+Achieved 100% test coverage: Added additional tests in the Piece class to ensure complete test coverage and verify all scenarios.
