@@ -36,22 +36,34 @@ class Pawn(Piece):
         return False
 
     def is_initial_move(self, new_x, new_y, is_black=False):
-        if is_black:
-            return new_x == self.x and (new_y == self.y - 1 or new_y == self.y - 2) and self.y == 6
-        else:
-            return new_x == self.x and (new_y == self.y + 1 or new_y == self.y + 2) and self.y == 1
+        return (self.is_same_column(new_x) and
+                self.is_valid_initial_row(is_black) and
+                self.is_valid_initial_move(new_y, is_black))
 
     def is_forward_move(self, new_x, new_y, is_black=False):
-        if is_black:
-            return new_x == self.x and new_y == self.y - 1
-        else:
-            return new_x == self.x and new_y == self.y + 1
+        return self.is_same_column(new_x) and self.is_valid_forward_move(new_y, is_black)
 
     def is_capture_move(self, new_x, new_y, board, is_black=False):
-        if is_black:
-            return abs(new_x - self.x) == 1 and new_y == self.y - 1 and self.is_enemy_piece(new_x, new_y, board)
-        else:
-            return abs(new_x - self.x) == 1 and new_y == self.y + 1 and self.is_enemy_piece(new_x, new_y, board)
+        return (self.is_diagonal_move(new_x, new_y, is_black) and
+                self.is_enemy_piece(new_x, new_y, board))
+
+    def is_same_column(self, new_x):
+        return new_x == self.x
+
+    def is_valid_initial_row(self, is_black):
+        return self.y == 6 if is_black else self.y == 1
+
+    def is_valid_initial_move(self, new_y, is_black):
+        direction = -1 if is_black else 1
+        return new_y == self.y + direction or new_y == self.y + 2 * direction
+
+    def is_valid_forward_move(self, new_y, is_black):
+        direction = -1 if is_black else 1
+        return new_y == self.y + direction
+
+    def is_diagonal_move(self, new_x, new_y, is_black):
+        direction = -1 if is_black else 1
+        return abs(new_x - self.x) == 1 and new_y == self.y + direction
 
     def is_enemy_piece(self, new_x, new_y, board):
         target_piece = board.get_piece_at(new_x, new_y)
