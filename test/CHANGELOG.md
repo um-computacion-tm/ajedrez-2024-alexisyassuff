@@ -73,3 +73,11 @@ Refactored is_valid_move method: Separated logic for white and black pawns into 
 Added helper methods: Introduced methods like is_initial_move, is_forward_move, is_capture_move, and others to simplify the pawn movement logic.
 Fixed code smells in print_board: Refactored print_board method to improve code quality and reduce complexity.
 Achieved 100% test coverage: Added additional tests in the Piece class to ensure complete test coverage and verify all scenarios.
+
+## [27-08-2024]
+
+### Added
+
+The AjedrezCli class was implemented: to facilitate interaction with the chess game.
+The Chess class was introduced to manage the game logic, including piece initialization and turn handling.
+The initial positions for the white and black pieces on the board were established.
