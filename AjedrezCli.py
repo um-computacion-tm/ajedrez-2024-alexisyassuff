@@ -64,3 +64,31 @@ class AjedrezCli:
 
         king = King(4, 7, "black")
         self.board.place_piece(king)
+
+    def play_turn(self):
+        if self.game_over:
+            return False  # Terminar el juego si game_over es True
+
+        self.board.print_board()
+        print(f"Turno de {self.current_turn}")
+
+        origin = self.get_user_input(
+            "Ingrese la posición de origen (por ejemplo, D2) o 'q' para rendirse: ")
+        if origin.lower() == 'q':
+            self.handle_surrender()
+            return False  # Indicar que el juego ha terminado
+
+        destination = self.get_user_input(
+            "Ingrese la posición de destino (por ejemplo, D3): ")
+
+        try:
+            x1, y1, x2, y2 = self.get_positions_from_notation(
+                origin, destination)
+            self.attempt_move(x1, y1, x2, y2)
+        except (ValueError, IndexError):
+            print("Entrada inválida")
+
+        return True  # Continuar el juego
+
+    def get_user_input(self, prompt):
+        return input(prompt)

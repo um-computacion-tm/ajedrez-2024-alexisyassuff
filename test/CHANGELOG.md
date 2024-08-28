@@ -52,27 +52,27 @@ Unit tests were created to verify the functionality of these methods.
 
 ## [20-08-2024]
 
-### Added
+### Edited
 
-Pawn class movement rules have been implemented, including initial moves, diagonal captures, and restrictions.
-Tests have been added to ensure that these rules work correctly
-All this, considering the refactoring proposed by CodeClimate when dealing with complex functions due to their large size
+Implemented Pawn class movement rules, including initial moves, diagonal captures, and restrictions.
+Added tests to ensure that these rules work correctly.
+Refactored complex functions due to their large size based on the proposal from CodeClimate.
 
 ## [21-08-2024]
 
-### Added
+### Edited
 
-Due to CodeClimate's proposal, the print_board method of the Board class has been refactored by splitting its logic into three separate methods: mark_superior, mark_inferior and for_print_board, which improves the clarity and maintainability of the code.
+Refactored the print_board method of the Board class by splitting its logic into three separate methods: mark_superior, mark_inferior, and for_print_board to improve clarity and maintainability.
 
 ## [22-08-2024] and [23-08-2024]
 
-### Added
+### Edited
 
-Refactor Pawn Movement Logic and Print Board
-Refactored is_valid_move method: Separated logic for white and black pawns into distinct methods to enhance readability and maintainability.
-Added helper methods: Introduced methods like is_initial_move, is_forward_move, is_capture_move, and others to simplify the pawn movement logic.
-Fixed code smells in print_board: Refactored print_board method to improve code quality and reduce complexity.
-Achieved 100% test coverage: Added additional tests in the Piece class to ensure complete test coverage and verify all scenarios.
+Refactored Pawn movement logic and print_board.
+Refactored is_valid_move method: separated logic for white and black pawns into distinct methods to enhance readability and maintainability.
+Added helper methods: introduced methods like is_initial_move, is_forward_move, is_capture_move, and others to simplify the pawn movement logic.
+Fixed code smells in print_board: refactored print_board method to improve code quality and reduce complexity.
+Achieved 100% test coverage: added additional tests in the Piece class to ensure complete test coverage and verify all scenarios.
 
 ## [27-08-2024]
 
@@ -81,3 +81,10 @@ Achieved 100% test coverage: Added additional tests in the Piece class to ensure
 The AjedrezCli class was implemented: to facilitate interaction with the chess game.
 The Chess class was introduced to manage the game logic, including piece initialization and turn handling.
 The initial positions for the white and black pieces on the board were established.
+
+## [28-08-2024]
+
+### Added
+
+Turn-based play has been implemented: added functionality to alternate turns between players,
+validate moves and update the board state accordingly.

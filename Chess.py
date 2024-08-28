@@ -7,6 +7,9 @@ class Chess:
 
     def start(self):
         self.game.initialize_pieces()
+        while True:
+            if not self.game.play_turn():
+                break
 
 
 def main():
