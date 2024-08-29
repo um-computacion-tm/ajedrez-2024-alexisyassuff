@@ -1,12 +1,12 @@
 from Ajedrez.Piece import Piece
 
 
-class Horse(Piece):
+class Knight(Piece):
     def __init__(self, x, y, color):
         # Inicializar reyes blancos y negros
         if color == 'white':
-            icon = 'HW'
+            icon = 'KW'
         elif color == "black":
-            icon = 'HB'
+            icon = 'KB'
 
         super().__init__(x, y, color, icon)

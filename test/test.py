@@ -4,7 +4,7 @@ from Ajedrez.Queen import Queen
 from Ajedrez.King import King
 from Ajedrez.Rook import Rook
 from Ajedrez.Bishop import Bishop
-from Ajedrez.Horse import Horse
+from Ajedrez.Knight import Knight
 from Ajedrez.Pawn import Pawn
 from Ajedrez.Board import Board
 
@@ -77,51 +77,86 @@ class TestKing(unittest.TestCase):
 class TestRook(unittest.TestCase):
 
     def setUp(self):
-        self.rook_white = Rook(1, 0, 'white')
-        self.rook_black = Rook(1, 7, 'black')
+        self.board = Board()
+        self.white_rook = Rook(0, 0, 'white')
+        self.black_rook = Rook(7, 7, 'black')
+        self.board.place_piece(self.white_rook)
+        self.board.place_piece(self.black_rook)
 
     def test_initial_position_white(self):
-        self.assertEqual(self.rook_white.get_position(), (1, 0))
+        self.assertEqual(self.white_rook.get_position(), (0, 0))
 
     def test_initial_position_black(self):
-        self.assertEqual(self.rook_black.get_position(), (1, 7))
+        self.assertEqual(self.black_rook.get_position(), (7, 7))
 
     def test_get_color_black(self):
-        self.assertEqual(self.rook_black.get_color(), 'black')
+        self.assertEqual(self.black_rook.get_color(), 'black')
 
     def test_get_color_white(self):
-        self.assertEqual(self.rook_white.get_color(), 'white')
+        self.assertEqual(self.white_rook.get_color(), 'white')
 
     def test_get_icon_white(self):
-        self.assertEqual(self.rook_white.get_icon(), 'RW')
+        self.assertEqual(self.white_rook.get_icon(), 'RW')
 
     def test_get_icon_black(self):
-        self.assertEqual(self.rook_black.get_icon(), 'RB')
+        self.assertEqual(self.black_rook.get_icon(), 'RB')
+
+    def test_valid_move_vertical(self):
+        # Movimiento vertical válido
+        self.assertTrue(self.white_rook.is_valid_move(0, 5, self.board))
+
+    def test_valid_move_horizontal(self):
+        # Movimiento horizontal válido
+        self.assertTrue(self.white_rook.is_valid_move(5, 0, self.board))
+
+    def test_invalid_move_diagonal(self):
+        # Movimiento diagonal no es válido para una torre
+        self.assertFalse(self.white_rook.is_valid_move(1, 1, self.board))
+
+    def test_invalid_move_obstructed(self):
+        # Movimiento inválido cuando hay una pieza en el camino
+        obstructing_rook = Rook(0, 3, 'white')
+        self.board.place_piece(obstructing_rook)
+        self.assertFalse(self.white_rook.is_valid_move(0, 5, self.board))
+
+    def test_invalid_capture_own_piece(self):
+        # Movimiento inválido al intentar capturar una pieza propia
+        self.board.place_piece(Rook(0, 5, 'white'))
+        self.assertFalse(self.white_rook.is_valid_move(0, 5, self.board))
+
+    def test_invalid_move_same_position(self):
+        self.assertFalse(self.white_rook.is_valid_move(0, 0, self.board))
+
+    def test_invalid_move_horizontal_obstructed(self):
+        # Coloca una pieza en el camino horizontal de la torre
+        obstructing_rook = Rook(3, 0, 'white')
+        self.board.place_piece(obstructing_rook)
+        # Intenta mover la torre horizontalmente más allá de la pieza obstruida
+        self.assertFalse(self.white_rook.is_valid_move(5, 0, self.board))
 
 
-class TestHorse(unittest.TestCase):
-
+class TestKnight(unittest.TestCase):
     def setUp(self):
-        self.horse_white = Horse(1, 0, 'white')
-        self.horse_black = Horse(1, 7, 'black')
+        self.knight_white = Knight(1, 0, 'white')
+        self.knight_black = Knight(1, 7, 'black')
 
     def test_initial_position_white(self):
-        self.assertEqual(self.horse_white.get_position(), (1, 0))
+        self.assertEqual(self.knight_white.get_position(), (1, 0))
 
     def test_initial_position_black(self):
-        self.assertEqual(self.horse_black.get_position(), (1, 7))
+        self.assertEqual(self.knight_black.get_position(), (1, 7))
 
     def test_get_color_black(self):
-        self.assertEqual(self.horse_black.get_color(), 'black')
+        self.assertEqual(self.knight_black.get_color(), 'black')
 
     def test_get_color_white(self):
-        self.assertEqual(self.horse_white.get_color(), 'white')
+        self.assertEqual(self.knight_white.get_color(), 'white')
 
     def test_get_icon_white(self):
-        self.assertEqual(self.horse_white.get_icon(), 'HW')
+        self.assertEqual(self.knight_white.get_icon(), 'KW')
 
     def test_get_icon_black(self):
-        self.assertEqual(self.horse_black.get_icon(), 'HB')
+        self.assertEqual(self.knight_black.get_icon(), 'KB')
 
 
 class TestBishop(unittest.TestCase):

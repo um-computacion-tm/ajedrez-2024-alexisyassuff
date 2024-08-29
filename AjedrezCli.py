@@ -4,7 +4,7 @@ from Ajedrez.Queen import Queen
 from Ajedrez.King import King
 from Ajedrez.Rook import Rook
 from Ajedrez.Bishop import Bishop
-from Ajedrez.Horse import Horse
+from Ajedrez.Knight import Knight
 
 
 class AjedrezCli:
@@ -26,8 +26,8 @@ class AjedrezCli:
 
         positions = [1, 6]
         for i in positions:
-            horse = Horse(i, 0, 'white')
-            self.board.place_piece(horse)
+            knight = Knight(i, 0, 'white')
+            self.board.place_piece(knight)
 
         positions = [2, 5]
         for i in positions:
@@ -51,8 +51,8 @@ class AjedrezCli:
 
         positions = [1, 6]
         for i in positions:
-            horse = Horse(i, 7, 'black')
-            self.board.place_piece(horse)
+            knight = Knight(i, 7, 'black')
+            self.board.place_piece(knight)
 
         positions = [2, 5]
         for i in positions:

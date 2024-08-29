@@ -88,3 +88,14 @@ The initial positions for the white and black pieces on the board were establish
 
 Turn-based play has been implemented: added functionality to alternate turns between players,
 validate moves and update the board state accordingly.
+
+## [29-08-2024]
+
+### Added
+
+Valid move tests were implemented for vertical and horizontal moves.
+Invalid move tests included diagonal moves, moves obstructed by other pieces, capturing own pieces, and moves to the same position.
+
+### Edited
+
+Corrected the name of the Horse Class to Knight Class
