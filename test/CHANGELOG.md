@@ -99,3 +99,9 @@ Invalid move tests included diagonal moves, moves obstructed by other pieces, ca
 ### Edited
 
 Corrected the name of the Horse Class to Knight Class
+
+## [30-08-2024]
+
+### Added
+
+Added movement functionality for the Rook class
