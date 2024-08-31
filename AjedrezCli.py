@@ -92,3 +92,24 @@ class AjedrezCli:
 
     def get_user_input(self, prompt):
         return input(prompt)
+
+    def get_positions_from_notation(self, origin, destination):
+        x1, y1 = self.board.get_position_from_notation(origin)
+        x2, y2 = self.board.get_position_from_notation(destination)
+        return x1, y1, x2, y2
+
+    def attempt_move(self, x1, y1, x2, y2):
+        piece = self.board.get_piece_at(x1, y1)
+        if self.is_valid_move(piece):
+            if self.board.move_piece(piece, x2, y2):
+                self.switch_turn()
+            else:
+                print("Movimiento no válido")
+        else:
+            print("No hay pieza en la posición inicial o no es tu turno")
+
+    def is_valid_move(self, piece):
+        return piece and piece.get_color() == self.current_turn
+
+    def switch_turn(self):
+        self.current_turn = 'black' if self.current_turn == 'white' else 'white'
