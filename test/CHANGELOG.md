@@ -113,3 +113,7 @@ Added movement functionality for the Rook class
 User input for moves: Integrated input handling for user moves in standard chess notation (e.g., "D2" to "D3").
 Basic error handling: Included error handling for invalid inputs and invalid moves to enhance the user experience.
 Print board state: Provided a method to print the current state of the board after each turn.
+
+### Edited
+
+Refactored complex functions due to their large size based on the proposal from CodeClimate

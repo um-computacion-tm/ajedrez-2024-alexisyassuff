@@ -14,55 +14,54 @@ class AjedrezCli:
         self.game_over = False  # Variable para controlar si el juego terminó
 
     def initialize_pieces(self):
-        # -----------PIEZAS BLANCAS - ---------------
+        self.initialize_white_pieces()
+        self.initialize_black_pieces()
+
+    def initialize_white_pieces(self):
+        self.initialize_pawns(1, 'white')
+        self.initialize_rooks(0, 'white')
+        self.initialize_knights(0, 'white')
+        self.initialize_bishops(0, 'white')
+        self.initialize_queen(0, 'white')
+        self.initialize_king(0, 'white')
+
+    def initialize_black_pieces(self):
+        self.initialize_pawns(6, 'black')
+        self.initialize_rooks(7, 'black')
+        self.initialize_knights(7, 'black')
+        self.initialize_bishops(7, 'black')
+        self.initialize_queen(7, 'black')
+        self.initialize_king(7, 'black')
+
+    def initialize_pawns(self, row, color):
         for i in range(8):
-            pawn = Pawn(i, 1, 'white')
+            pawn = Pawn(i, row, color)
             self.board.place_piece(pawn)
 
+    def initialize_rooks(self, row, color):
         positions = [0, 7]
         for i in positions:
-            rook = Rook(i, 0, 'white')
+            rook = Rook(i, row, color)
             self.board.place_piece(rook)
 
+    def initialize_knights(self, row, color):
         positions = [1, 6]
         for i in positions:
-            knight = Knight(i, 0, 'white')
+            knight = Knight(i, row, color)
             self.board.place_piece(knight)
 
+    def initialize_bishops(self, row, color):
         positions = [2, 5]
         for i in positions:
-            bishop = Bishop(i, 0, 'white')
+            bishop = Bishop(i, row, color)
             self.board.place_piece(bishop)
 
-        queen = Queen(3, 0, "white")
-        self.board.place_piece(queen)
-        king = King(4, 0, "white")
-        self.board.place_piece(king)
-
-        # -----------PIEZAS NEGRAS - ---------------
-        for i in range(8):
-            pawn = Pawn(i, 6, 'black')
-            self.board.place_piece(pawn)
-
-        positions = [0, 7]
-        for i in positions:
-            rook = Rook(i, 7, 'black')
-            self.board.place_piece(rook)
-
-        positions = [1, 6]
-        for i in positions:
-            knight = Knight(i, 7, 'black')
-            self.board.place_piece(knight)
-
-        positions = [2, 5]
-        for i in positions:
-            bishop = Bishop(i, 7, 'black')
-            self.board.place_piece(bishop)
-
-        queen = Queen(3, 7, "black")
+    def initialize_queen(self, row, color):
+        queen = Queen(3, row, color)
         self.board.place_piece(queen)
 
-        king = King(4, 7, "black")
+    def initialize_king(self, row, color):
+        king = King(4, row, color)
         self.board.place_piece(king)
 
     def play_turn(self):
