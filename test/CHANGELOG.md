@@ -117,3 +117,13 @@ Print board state: Provided a method to print the current state of the board aft
 ### Edited
 
 Refactored complex functions due to their large size based on the proposal from CodeClimate
+
+## [01-09-2024]
+
+### Added
+
+Added methods to declare a winner when the opposing player retires.
+
+### Edited
+
+Refactored complex functions in Rook Class.

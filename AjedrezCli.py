@@ -112,3 +112,12 @@ class AjedrezCli:
 
     def switch_turn(self):
         self.current_turn = 'black' if self.current_turn == 'white' else 'white'
+
+    def handle_surrender(self):
+        print(f"El jugador {self.current_turn} se ha rendido.")
+        self.declare_winner()
+        self.game_over = True  # Marcar el juego como terminado
+
+    def declare_winner(self):
+        winner = 'black' if self.current_turn == 'white' else 'white'
+        print(f"El jugador {winner} ha ganado la partida.")
