@@ -127,3 +127,9 @@ Added methods to declare a winner when the opposing player retires.
 ### Edited
 
 Refactored complex functions in Rook Class.
+
+## [02-09-2024]
+
+### Added
+
+Added movement functionality for the Bishop class
