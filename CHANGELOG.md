@@ -133,3 +133,9 @@ Refactored complex functions in Rook Class.
 ### Added
 
 Added movement functionality for the Bishop class
+
+## [03-09-2024]
+
+### Added
+
+Added movement functionality for the King class
