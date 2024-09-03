@@ -18,6 +18,16 @@ class Piece:
     def get_icon(self):
         return self.icon
 
-    def is_valid_move(self, new_x, new_y):
+    def is_valid_move(self, new_x, new_y, board):
+        if self.is_same_color_piece(new_x, new_y, board):
+            return False
+        return self.is_valid_piece_move(new_x, new_y, board)
+
+    def is_same_color_piece(self, new_x, new_y, board):
+        # Verificar si la nueva posición está ocupada por una pieza del mismo color
+        target_piece = board.get_piece_at(new_x, new_y)
+        return target_piece and target_piece.get_color() == self.color
+
+    def is_valid_piece_move(self, new_x, new_y, board):
         raise NotImplementedError(
             "Este método debe ser implementado por las subclases")

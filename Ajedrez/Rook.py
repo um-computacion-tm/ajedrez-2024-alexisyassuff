@@ -38,7 +38,3 @@ class Rook(Piece):
             if board.get_piece_at(x, self.y):
                 return False
         return True
-
-    def is_same_color_piece(self, new_x, new_y, board):
-        target_piece = board.get_piece_at(new_x, new_y)
-        return target_piece and target_piece.get_color() == self.color
