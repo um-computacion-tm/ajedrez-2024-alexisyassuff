@@ -139,3 +139,9 @@ Added movement functionality for the Bishop class
 ### Added
 
 Added movement functionality for the King class
+
+## [04-09-2024]
+
+### Added
+
+Added unittest for the functionality in the King and Bishop class

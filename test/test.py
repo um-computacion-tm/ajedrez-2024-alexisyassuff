@@ -11,6 +11,7 @@ from Ajedrez.Board import Board
 
 class TestPiece(unittest.TestCase):
     def setUp(self):
+        self.board = Board()
         self.piece = Piece(4, 4, 'white', 'P')
 
     def test_get_position(self):
@@ -28,7 +29,7 @@ class TestPiece(unittest.TestCase):
 
     def test_is_valid_move_not_implemented(self):
         with self.assertRaises(NotImplementedError):
-            self.piece.is_valid_move(5, 5)
+            self.piece.is_valid_piece_move(5, 5, self.board)
 
 
 class TestQueen(unittest.TestCase):
@@ -52,8 +53,11 @@ class TestQueen(unittest.TestCase):
 class TestKing(unittest.TestCase):
 
     def setUp(self):
+        self.board = Board()
         self.king_white = King(4, 0, 'white')
         self.king_black = King(4, 7, 'black')
+        self.board.place_piece(self.king_white)
+        self.board.place_piece(self.king_black)
 
     def test_initial_position_white(self):
         self.assertEqual(self.king_white.get_position(), (4, 0))
@@ -72,6 +76,29 @@ class TestKing(unittest.TestCase):
 
     def test_get_icon_black(self):
         self.assertEqual(self.king_black.get_icon(), 'KB')
+
+    def test_valid_move_adjacent(self):
+        # Movimiento válido a una casilla adyacente
+        self.assertTrue(self.king_white.is_valid_move(4, 1, self.board))
+        self.assertTrue(self.king_white.is_valid_move(3, 0, self.board))
+        self.assertTrue(self.king_white.is_valid_move(3, 1, self.board))
+
+    def test_invalid_move_non_adjacent(self):
+        # Movimiento no válido a una casilla no adyacente
+        self.assertFalse(self.king_white.is_valid_move(4, 2, self.board))
+        self.assertFalse(self.king_white.is_valid_move(2, 0, self.board))
+
+    def test_valid_capture_enemy_piece(self):
+        # Movimiento válido para capturar una pieza enemiga
+        enemy_rook = Rook(3, 0, 'black')
+        self.board.place_piece(enemy_rook)
+        self.assertTrue(self.king_white.is_valid_move(3, 0, self.board))
+
+    def test_invalid_capture_own_piece(self):
+        # Movimiento inválido al intentar capturar una pieza propia
+        own_rook = Rook(3, 0, 'white')
+        self.board.place_piece(own_rook)
+        self.assertFalse(self.king_white.is_valid_move(3, 0, self.board))
 
 
 class TestRook(unittest.TestCase):
@@ -153,35 +180,49 @@ class TestKnight(unittest.TestCase):
         self.assertEqual(self.knight_white.get_color(), 'white')
 
     def test_get_icon_white(self):
-        self.assertEqual(self.knight_white.get_icon(), 'KW')
+        self.assertEqual(self.knight_white.get_icon(), 'KnW')
 
     def test_get_icon_black(self):
-        self.assertEqual(self.knight_black.get_icon(), 'KB')
+        self.assertEqual(self.knight_black.get_icon(), 'KnB')
 
 
 class TestBishop(unittest.TestCase):
 
     def setUp(self):
-        self.rook_white = Bishop(1, 0, 'white')
-        self.rook_black = Bishop(7, 7, 'black')
+        # Configura el tablero y el alfil para cada prueba
+        self.board = Board()
+        self.white_bishop = Bishop(2, 0, 'white')
+        self.black_bishop = Bishop(5, 7, 'black')
+        self.board.place_piece(self.white_bishop)
+        self.board.place_piece(self.black_bishop)
 
     def test_initial_position_white(self):
-        self.assertEqual(self.rook_white.get_position(), (1, 0))
+        self.assertEqual(self.white_bishop.get_position(), (2, 0))
 
     def test_initial_position_black(self):
-        self.assertEqual(self.rook_black.get_position(), (7, 7))
+        self.assertEqual(self.black_bishop.get_position(), (5, 7))
 
     def test_get_color_black(self):
-        self.assertEqual(self.rook_black.get_color(), 'black')
+        self.assertEqual(self.black_bishop.get_color(), 'black')
 
     def test_get_color_white(self):
-        self.assertEqual(self.rook_white.get_color(), 'white')
+        self.assertEqual(self.white_bishop.get_color(), 'white')
 
     def test_get_icon_white(self):
-        self.assertEqual(self.rook_white.get_icon(), 'BW')
+        self.assertEqual(self.white_bishop.get_icon(), 'BW')
 
     def test_get_icon_black(self):
-        self.assertEqual(self.rook_black.get_icon(), 'BB')
+        self.assertEqual(self.black_bishop.get_icon(), 'BB')
+
+    def test_valid_move_diagonal_up_right(self):
+        # Movimiento diagonal válido hacia arriba a la derecha
+        self.assertTrue(self.white_bishop.is_valid_move(5, 3, self.board))
+
+    def test_path_not_clear(self):
+        # Movimiento no válido si hay piezas en el camino
+        obstructing_piece = Bishop(3, 1, 'white')
+        self.board.place_piece(obstructing_piece)
+        self.assertFalse(self.white_bishop.is_valid_move(4, 2, self.board))
 
 
 class TestPawn(unittest.TestCase):
