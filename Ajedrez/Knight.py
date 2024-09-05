@@ -10,3 +10,10 @@ class Knight(Piece):
             icon = 'KnB'
 
         super().__init__(x, y, color, icon)
+
+    def is_valid_move(self, new_x, new_y, board):
+        return self.is_knight_move(new_x, new_y) and not self.is_same_color_piece(new_x, new_y, board)
+
+    def is_knight_move(self, new_x, new_y):
+        # Check if the move is a knight move
+        return (abs(new_x - self.__x__), abs(new_y - self.__y__)) in [(1, 2), (2, 1)]

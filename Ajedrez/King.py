@@ -16,4 +16,4 @@ class King(Piece):
         return False
 
     def is_adjacent_move(self, new_x, new_y):
-        return abs(new_x - self.x) <= 1 and abs(new_y - self.y) <= 1
+        return abs(new_x - self.__x__) <= 1 and abs(new_y - self.__y__) <= 1

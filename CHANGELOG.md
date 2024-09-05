@@ -145,3 +145,13 @@ Added movement functionality for the King class
 ### Added
 
 Added unittest for the functionality in the King and Bishop class
+
+## [05-09-2024]
+
+### Added
+
+Added movement functionality for the Knight class
+
+### Edited
+
+Fixed attributes to comply with the requirement where class attributes must contain the symbols “\_\_” as prefix and postfix
