@@ -155,3 +155,9 @@ Added movement functionality for the Knight class
 ### Edited
 
 Fixed attributes to comply with the requirement where class attributes must contain the symbols “\_\_” as prefix and postfix
+
+## [06-09-2024]
+
+### Added
+
+Added missing coverage for the Knight class and unit tests for the Queen class moves.
