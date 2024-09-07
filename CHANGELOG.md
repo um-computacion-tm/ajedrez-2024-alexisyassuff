@@ -161,3 +161,9 @@ Fixed attributes to comply with the requirement where class attributes must cont
 ### Added
 
 Added missing coverage for the Knight class and unit tests for the Queen class moves.
+
+## [07-09-2024]
+
+### Added
+
+Added movement functionality for the Queen class

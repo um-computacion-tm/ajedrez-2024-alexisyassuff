@@ -34,8 +34,11 @@ class TestPiece(unittest.TestCase):
 
 class TestQueen(unittest.TestCase):
     def setUp(self):
+        self.board = Board()
         self.queen_white = Queen(3, 0, 'white')
         self.queen_black = Queen(3, 7, 'black')
+        self.board.place_piece(self.queen_white)
+        self.board.place_piece(self.queen_black)
 
     def test_initial_position_white(self):
         self.assertEqual(self.queen_white.get_position(), (3, 0))
