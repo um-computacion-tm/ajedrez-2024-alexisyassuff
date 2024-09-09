@@ -102,6 +102,10 @@ class AjedrezCli:
         if self.is_valid_move(piece):
             if self.board.move_piece(piece, x2, y2):
                 self.switch_turn()
+                # Si jugador no tiene piezas se declara ganador y se termina la partida
+                if not self.has_pieces(self.current_turn):
+                    self.declare_winner()
+                    self.game_over = True
             else:
                 print("Movimiento no válido")
         else:
@@ -112,6 +116,15 @@ class AjedrezCli:
 
     def switch_turn(self):
         self.current_turn = 'black' if self.current_turn == 'white' else 'white'
+
+# Verifica constantemente que un jugador tenga piezas, caso contrario pierde la partida
+
+    def has_pieces(self, color):
+        for row in self.board.board:
+            for piece in row:
+                if piece and piece.get_color() == color:
+                    return True
+        return False
 
     def handle_surrender(self):
         print(f"El jugador {self.current_turn} se ha rendido.")

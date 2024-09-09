@@ -167,3 +167,9 @@ Added missing coverage for the Knight class and unit tests for the Queen class m
 ### Added
 
 Added movement functionality for the Queen class
+
+## [08-09-2024]
+
+### Added
+
+Added functionality to declare victory when one of the players runs out of pieces
