@@ -34,7 +34,7 @@ class AjedrezCli:
         self.initialize_king(7, 'black')
 
     def initialize_pawns(self, row, color):
-        for i in range(8):
+        for i in range(2):
             pawn = Pawn(i, row, color)
             self.board.place_piece(pawn)
 
@@ -117,13 +117,18 @@ class AjedrezCli:
     def switch_turn(self):
         self.current_turn = 'black' if self.current_turn == 'white' else 'white'
 
-# Verifica constantemente que un jugador tenga piezas, caso contrario pierde la partida
+    # Verifica constantemente que un jugador tenga piezas, caso contrario pierde la partida
 
     def has_pieces(self, color):
         for row in self.board.board:
-            for piece in row:
-                if piece and piece.get_color() == color:
-                    return True
+            if self.row_has_piece_of_color(row, color):
+                return True
+        return False
+
+    def row_has_piece_of_color(self, row, color):
+        for piece in row:
+            if piece and piece.get_color() == color:
+                return True
         return False
 
     def handle_surrender(self):

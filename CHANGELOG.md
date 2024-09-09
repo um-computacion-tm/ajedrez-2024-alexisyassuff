@@ -173,3 +173,10 @@ Added movement functionality for the Queen class
 ### Added
 
 Added functionality to declare victory when one of the players runs out of pieces
+
+## [09-09-2024]
+
+### Added
+
+The function that declares a winner when one of the players runs out of pieces has been refactored to reduce cognitive complexity.
+The Queen, Rook, and Bishop code has been fixed by moving it to the parent Piece class, so that they inherit functionality and there is no code duplication.

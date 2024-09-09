@@ -18,14 +18,3 @@ class Bishop(Piece):
 
     def is_diagonal_move(self, new_x, new_y):
         return abs(new_x - self.__x__) == abs(new_y - self.__y__) and (new_x != self.__x__ and new_y != self.__y__)
-
-    def is_path_clear(self, new_x, new_y, board):
-        dx = 1 if new_x > self.__x__ else -1
-        dy = 1 if new_y > self.__y__ else -1
-        x, y = self.__x__ + dx, self.__y__ + dy
-        while x != new_x and y != new_y:
-            if board.get_piece_at(x, y):
-                return False
-            x += dx
-            y += dy
-        return True
