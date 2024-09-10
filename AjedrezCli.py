@@ -14,18 +14,12 @@ class AjedrezCli:
         self.game_over = False  # Variable para controlar si el juego terminó
 
     def initialize_pieces(self):
-        self.initialize_white_pieces()
-        self.initialize_black_pieces()
-
-    def initialize_white_pieces(self):
         self.initialize_pawns(1, 'white')
         self.initialize_rooks(0, 'white')
         self.initialize_knights(0, 'white')
         self.initialize_bishops(0, 'white')
         self.initialize_queen(0, 'white')
         self.initialize_king(0, 'white')
-
-    def initialize_black_pieces(self):
         self.initialize_pawns(6, 'black')
         self.initialize_rooks(7, 'black')
         self.initialize_knights(7, 'black')
@@ -106,7 +100,7 @@ class AjedrezCli:
             print("No hay pieza en la posición inicial o no es tu turno")
 
     def correct_move(self):
-        self.switch_turn()
+        self.switch_turn_and_get_other_player()
         if not self.has_pieces(self.current_turn):
             self.declare_winner()
             self.game_over = True
@@ -118,9 +112,6 @@ class AjedrezCli:
 
     def is_valid_move(self, piece):
         return piece and piece.get_color() == self.current_turn
-
-    def switch_turn(self):
-        self.current_turn = 'black' if self.current_turn == 'white' else 'white'
 
     def has_pieces(self, color):
         for row in self.board.board:
@@ -145,7 +136,8 @@ class AjedrezCli:
                 continue
 
     def other_player_surrendered(self):
-        return self.get_user_input(f"El jugador {self.other_player()},  debe presionar 'q' y rendirse: ").lower() == 'q'
+        return self.get_user_input(f"El jugador {self.switch_turn_and_get_other_player()},  debe presionar 'q' y rendirse: ").lower() == 'q'
 
-    def other_player(self):
-        return 'black' if self.current_turn == 'white' else 'white'
+    def switch_turn_and_get_other_player(self):
+        self.current_turn = 'black' if self.current_turn == 'white' else 'white'
+        return self.current_turn
