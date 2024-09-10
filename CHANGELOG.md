@@ -180,3 +180,10 @@ Added functionality to declare victory when one of the players runs out of piece
 
 The function that declares a winner when one of the players runs out of pieces has been refactored to reduce cognitive complexity.
 The Queen, Rook, and Bishop code has been fixed by moving it to the parent Piece class, so that they inherit functionality and there is no code duplication.
+
+## [10-09-2024]
+
+### Edited
+
+Fixed the feature so that there is no winner if one of the players quits the game. Currently, the situation must be mutually agreed upon for the game to end in a draw. This repeats in a loop, so that if one of the players quits, the other is forced to accept it.
+Child class functions (that share motion logic) have been added to the Piece class so that functions can be reused.

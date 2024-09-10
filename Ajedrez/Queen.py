@@ -15,9 +15,3 @@ class Queen(Piece):
             if self.is_path_clear(new_x, new_y, board) and not self.is_same_color_piece(new_x, new_y, board):
                 return True
         return False
-
-    def is_straight_move(self, new_x, new_y):
-        return new_x == self.__x__ or new_y == self.__y__
-
-    def is_diagonal_move(self, new_x, new_y):
-        return abs(new_x - self.__x__) == abs(new_y - self.__y__) and (new_x != self.__x__ and new_y != self.__y__)

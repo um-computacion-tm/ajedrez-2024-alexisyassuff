@@ -15,6 +15,3 @@ class Rook(Piece):
         if self.is_straight_move(new_x, new_y) and self.is_path_clear(new_x, new_y, board) and not self.is_same_color_piece(new_x, new_y, board):
             return True
         return False
-
-    def is_straight_move(self, new_x, new_y):
-        return new_x == self.__x__ or new_y == self.__y__

@@ -34,7 +34,7 @@ class AjedrezCli:
         self.initialize_king(7, 'black')
 
     def initialize_pawns(self, row, color):
-        for i in range(2):
+        for i in range(8):
             pawn = Pawn(i, row, color)
             self.board.place_piece(pawn)
 
@@ -101,24 +101,26 @@ class AjedrezCli:
         piece = self.board.get_piece_at(x1, y1)
         if self.is_valid_move(piece):
             if self.board.move_piece(piece, x2, y2):
-                self.execute_move(piece, x2, y2)
-                # Si jugador no tiene piezas se declara ganador y se termina la partida
-                if not self.has_pieces(self.current_turn):
-                    self.declare_winner()
-                    self.game_over = True
-            else:
-                print("Movimiento no válido")
+                self.correct_move()
         else:
             print("No hay pieza en la posición inicial o no es tu turno")
+
+    def correct_move(self):
+        self.switch_turn()
+        if not self.has_pieces(self.current_turn):
+            self.declare_winner()
+            self.game_over = True
+        else:
+            print("Movimiento no válido")
 
     def is_valid_piece_move(self, piece, x2, y2):
         return piece and self.is_valid_move(piece) and self.board.is_valid_destination(piece, x2, y2)
 
-    def execute_move(self, piece, x2, y2):
-        if self.board.move_piece(piece, x2, y2):
-            self.switch_turn()
+    def is_valid_move(self, piece):
+        return piece and piece.get_color() == self.current_turn
 
-    # Verifica constantemente que un jugador tenga piezas, caso contrario pierde la partida
+    def switch_turn(self):
+        self.current_turn = 'black' if self.current_turn == 'white' else 'white'
 
     def has_pieces(self, color):
         for row in self.board.board:
@@ -134,9 +136,16 @@ class AjedrezCli:
 
     def handle_surrender(self):
         print(f"El jugador {self.current_turn} se ha rendido.")
-        self.declare_winner()
-        self.game_over = True  # Marcar el juego como terminado
+        for i in range(1000):
+            if self.other_player_surrendered():
+                print("Ambos jugadores se han rendido. El juego termina en empate.")
+                self.game_over = True
+                break
+            else:
+                continue
 
-    def declare_winner(self):
-        winner = 'black' if self.current_turn == 'white' else 'white'
-        print(f"El jugador {winner} ha ganado la partida.")
+    def other_player_surrendered(self):
+        return self.get_user_input(f"El jugador {self.other_player()},  debe presionar 'q' y rendirse: ").lower() == 'q'
+
+    def other_player(self):
+        return 'black' if self.current_turn == 'white' else 'white'
