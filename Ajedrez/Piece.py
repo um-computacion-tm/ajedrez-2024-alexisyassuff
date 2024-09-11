@@ -21,8 +21,9 @@ class Piece:
     def get_icon(self):
         return self.__icon__
 
+# Verificar si la nueva posición está ocupada por una pieza del mismo color
+
     def is_same_color_piece(self, new_x, new_y, board):
-        # Verificar si la nueva posición está ocupada por una pieza del mismo color
         target_piece = board.get_piece_at(new_x, new_y)
         return target_piece and target_piece.get_color() == self.__color__
 
@@ -38,6 +39,7 @@ class Piece:
         else:
             return self.is_diagonal_path_clear(new_x, new_y, board)
 
+# Verificacion de si hay pieza en el camino de manera vertical
     def is_vertical_path_clear(self, new_y, board):
         step = 1 if new_y > self.__y__ else -1
         for y in range(self.__y__ + step, new_y, step):
@@ -45,12 +47,16 @@ class Piece:
                 return False
         return True
 
+# Verificacion de si hay pieza en el camino de manera horizontal
+
     def is_horizontal_path_clear(self, new_x, board):
         step = 1 if new_x > self.__x__ else -1
         for x in range(self.__x__ + step, new_x, step):
             if board.get_piece_at(x, self.__y__):
                 return False
         return True
+
+# Verificacion de si hay pieza en el camino de manera diagonal
 
     def is_diagonal_path_clear(self, new_x, new_y, board):
         dx = 1 if new_x > self.__x__ else -1

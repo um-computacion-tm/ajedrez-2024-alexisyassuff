@@ -196,3 +196,4 @@ Add a function that determines if there is a pawn on the opposite first row.
 Add an input function that, if this is true, gives the user options to exchange the pawn for another piece (other than another pawn or a king).
 On the board, add a function so that if this is true, the piece on the board is changed
 To the Winner_move function that already ended the game if one of the players ran out of pieces, I added an additional function has_king to declare a winner and end the game if any of the players has their king piece captured
+Separate the tests so that each piece has its own file independent of the others, achieving easier access to each one and better readability

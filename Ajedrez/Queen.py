@@ -4,9 +4,9 @@ from Ajedrez.Piece import Piece
 class Queen(Piece):
     def __init__(self, x, y, color):
         if color == 'white':
-            icon = 'QW'
+            icon = '♛'
         elif color == "black":
-            icon = 'QB'
+            icon = '♕'
 
         super().__init__(x, y, color, icon)
 

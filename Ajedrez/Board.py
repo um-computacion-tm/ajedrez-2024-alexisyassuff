@@ -1,3 +1,5 @@
+
+
 class Board:
     def __init__(self):
         # Matriz vacia 8x8 y cada casilla inicializa como None
@@ -61,3 +63,10 @@ class Board:
         col = ord(notation[0]) - ord('a')
         row = 8 - int(notation[1])
         return col, row
+
+# Insercion de la nueva pieza en tablero tras el cambio de pieza peon
+    def promote_pawn(self, pawn, new_x, new_y, new_piece):
+        old_x, old_y = pawn.get_position()
+        self.board[old_y][old_x] = None
+        self.board[new_y][new_x] = new_piece
+        new_piece.set_position(new_x, new_y)

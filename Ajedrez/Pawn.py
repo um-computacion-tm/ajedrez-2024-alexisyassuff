@@ -3,11 +3,7 @@ from Ajedrez.Piece import Piece
 
 class Pawn(Piece):
     def __init__(self, x, y, color):
-        # Inicializar peones blancos y negros
-        if color == 'white':
-            icon = 'PW'
-        elif color == "black":
-            icon = 'PB'
+        icon = '♟' if color == 'white' else '♙'
 
         super().__init__(x, y, color, icon)
 
@@ -43,9 +39,9 @@ class Pawn(Piece):
     def is_forward_move(self, new_x, new_y, is_black=False):
         return self.is_same_column(new_x) and self.is_valid_forward_move(new_y, is_black)
 
-    def is_capture_move(self, new_x, new_y, board, is_black=False):
-        return (self.is_diagonal_move(new_x, new_y, is_black) and
-                self.is_enemy_piece(new_x, new_y, board))
+    # def is_capture_move(self, new_x, new_y, board, is_black=False):
+    #     return (self.is_diagonal_move(new_x, new_y, is_black) and
+    #             self.is_enemy_piece(new_x, new_y, board))
 
     def is_same_column(self, new_x):
         return new_x == self.__x__
@@ -61,10 +57,25 @@ class Pawn(Piece):
         direction = -1 if is_black else 1
         return new_y == self.__y__ + direction
 
-    def is_diagonal_move(self, new_x, new_y, is_black):
+    # def is_diagonal_move(self, new_x, new_y, is_black):
+    #     direction = -1 if is_black else 1
+    #     return abs(new_x - self.__x__) == 1 and new_y == self.__y__ + direction
+
+    def is_capture_move(self, new_x, new_y, board, is_black=False):
+        return (self.is_diagonal_capture_move(new_x, new_y, is_black) and
+                self.is_enemy_piece(new_x, new_y, board))
+
+    def is_diagonal_capture_move(self, new_x, new_y, is_black):
         direction = -1 if is_black else 1
         return abs(new_x - self.__x__) == 1 and new_y == self.__y__ + direction
 
     def is_enemy_piece(self, new_x, new_y, board):
         target_piece = board.get_piece_at(new_x, new_y)
         return target_piece and target_piece.get_color() != self.__color__
+
+    def is_promotion_move(self, new_y):
+        return (self.__color__ == 'white' and new_y == 7) or (self.__color__ == 'black' and new_y == 0)
+
+    def is_diagonal_capture_move(self, new_x, new_y, is_black):
+        direction = -1 if is_black else 1
+        return abs(new_x - self.__x__) == 1 and new_y == self.__y__ + direction
