@@ -4,8 +4,8 @@
 
 ### Added
 
-Implemented Piece and Queen classes with basic methods.
-Added unit tests to verify functionality for both classes.
+I implemented the Piece and Queen classes with basic methods.
+Unit tests have been added to verify the functionality of both classes.
 
 ## [14-08-2024]
 
@@ -18,133 +18,129 @@ Unit tests were added to verify the functionality of both classes.
 
 ### Added
 
-Implemented classes Bishop and Horse, their attributes and methods, Added Unit tests.
+I implemented the Bishop and Horse classes, defining their attributes and methods. I also added unit tests.
 
 ## [16-08-2024]
 
 ### Added
 
-With the creation of the Pawn class, the definition of all the pieces with their respective attributes and unit tests was completed.
-The file structure was organized for greater clarity and maintainability.
+The Pawn class was created, completing the definition of all the pieces with their respective attributes and unit tests.
+The file structure was reorganized for optimal clarity and maintainability.
 
 ## [17-08-2024]
 
 ### Added
 
-Implemented the Board class, initializing an 8x8 matrix with empty positions.
-Added functionality to place pieces on the board using the place_piece method.
-Created unit tests to verify the correct initialization of the board and the proper placement of pieces.
+I implemented the Board class, which initializes an 8x8 matrix with empty positions.
+I added the ability to place pieces on the board using the place_piece method.
+I created unit tests to verify the correct initialization of the board and the proper placement of pieces.
 
 ## [18-08-2024]
 
 ### Added
 
-Implemented move_piece in Board: Added the ability to move a piece on the board, including handling piece capture.
-Enhanced Pawn functionality: Added movement logic specific to the Pawn piece, including initial double-step and single-step movements.
-Created unit tests for Board.move_piece and Pawn: Verified valid and invalid movements of the Pawn piece on the board.
+I implemented move_piece in Board, which allows you to move a piece on the board, including handling piece capture.
+I enhanced Pawn functionality by adding movement logic specific to the Pawn piece, including initial double-step and single-step movements.
+I created unit tests for Board.move_piece and Pawn, which verify the valid and invalid movements of the Pawn piece on the board.
 
-## [19-08-2024]
+[19-08-2024]
 
 ### Added
 
-Added methods to the Board class for printing the board, retrieving pieces by position, and converting chess notation to board coordinates.
-Unit tests were created to verify the functionality of these methods.
+I have added new methods to the Board class. These include the ability to print the board, retrieve pieces by position, and convert chess notation to board coordinates.
+Unit tests have been created to verify the functionality of these methods.
 
 ## [20-08-2024]
 
 ### Edited
 
-Implemented Pawn class movement rules, including initial moves, diagonal captures, and restrictions.
-Added tests to ensure that these rules work correctly.
-Refactored complex functions due to their large size based on the proposal from CodeClimate.
+I implemented the pawn class movement rules, including initial moves, diagonal captures, and restrictions.
+These rules are now tested and guaranteed to work correctly.
+I refactored the complex functions to make them more efficient based on the proposal from CodeClimate.
 
 ## [21-08-2024]
 
 ### Edited
 
-Refactored the print_board method of the Board class by splitting its logic into three separate methods: mark_superior, mark_inferior, and for_print_board to improve clarity and maintainability.
+I refactored the print_board method of the Board class. I split its logic into three separate methods: mark_superior, mark_inferior, and for_print_board. This improves clarity and maintainability.
 
 ## [22-08-2024] and [23-08-2024]
 
 ### Edited
 
-Refactored Pawn movement logic and print_board.
-Refactored is_valid_move method: separated logic for white and black pawns into distinct methods to enhance readability and maintainability.
-Added helper methods: introduced methods like is_initial_move, is_forward_move, is_capture_move, and others to simplify the pawn movement logic.
-Fixed code smells in print_board: refactored print_board method to improve code quality and reduce complexity.
-Achieved 100% test coverage: added additional tests in the Piece class to ensure complete test coverage and verify all scenarios.
+I refactored the pawn movement logic and print_board.
+I refactored the is_valid_move method. I separated the logic for white and black pawns into distinct methods, enhancing readability and maintainability.
+I added helper methods to simplify the pawn movement logic. These include is_initial_move, is_forward_move, is_capture_move, and others.
+I fixed the code smells in print_board. I refactored the print_board method to improve code quality and reduce complexity.
+I achieved 100% test coverage by adding additional tests in the Piece class to ensure complete test coverage and verify all scenarios.
 
 ## [27-08-2024]
 
 ### Added
 
-The AjedrezCli class was implemented: to facilitate interaction with the chess game.
+The AjedrezCli class was implemented to facilitate interaction with the chess game.
 The Chess class was introduced to manage the game logic, including piece initialization and turn handling.
 The initial positions for the white and black pieces on the board were established.
-
-## [28-08-2024]
+[28-08-2024]
 
 ### Added
 
-Turn-based play has been implemented: added functionality to alternate turns between players,
-validate moves and update the board state accordingly.
+I have implemented turn-based play. I added functionality to alternate turns between players, validate moves, and update the board state accordingly.
 
 ## [29-08-2024]
 
 ### Added
 
-Valid move tests were implemented for vertical and horizontal moves.
+I have implemented valid move tests for vertical and horizontal moves.
 Invalid move tests included diagonal moves, moves obstructed by other pieces, capturing own pieces, and moves to the same position.
 
 ### Edited
 
-Corrected the name of the Horse Class to Knight Class
+The Horse Class has been renamed to Knight Class.
 
 ## [30-08-2024]
 
 ### Added
 
-Added movement functionality for the Rook class
+The Rook class now has movement functionality.
 
 ## [31-08-2024]
 
 ### Added
 
-User input for moves: Integrated input handling for user moves in standard chess notation (e.g., "D2" to "D3").
-Basic error handling: Included error handling for invalid inputs and invalid moves to enhance the user experience.
-Print board state: Provided a method to print the current state of the board after each turn.
+Users can now input moves. User moves in standard chess notation (e.g., "D2" to "D3") are now integrated.
+We have implemented basic error handling. We have included error handling for invalid inputs and invalid moves to enhance the user experience.
+Print the board state. The current state of the board is now printed after each turn.
 
 ### Edited
 
-Refactored complex functions due to their large size based on the proposal from CodeClimate
+I refactored the complex functions due to their large size, following the proposal from CodeClimate.
 
 ## [01-09-2024]
 
 ### Added
 
-Added methods to declare a winner when the opposing player retires.
+I added methods to declare a winner when the opposing player retires.
 
-### Edited
-
-Refactored complex functions in Rook Class.
+I edited and refactored the complex functions in the Rook Class.
 
 ## [02-09-2024]
 
 ### Added
 
-Added movement functionality for the Bishop class
+I added movement functionality for the Bishop class.
 
 ## [03-09-2024]
 
 ### Added
 
-Added movement functionality for the King class
+I added movement functionality for the King class.
 
 ## [04-09-2024]
 
 ### Added
 
-Added unittest for the functionality in the King and Bishop class
+I added unit tests for the functionality in the King and Bishop class.
 
 ## [05-09-2024]
 
@@ -154,36 +150,49 @@ Added movement functionality for the Knight class
 
 ### Edited
 
-Fixed attributes to comply with the requirement where class attributes must contain the symbols “\_\_” as prefix and postfix
+Fixed attributes to comply with the requirement where class attributes must contain the symbols "\_\_" as prefix and postfix
 
 ## [06-09-2024]
 
 ### Added
 
-Added missing coverage for the Knight class and unit tests for the Queen class moves.
+Added missing coverage for the Knight class and unit tests for the Queen class moves
 
 ## [07-09-2024]
 
 ### Added
 
-Added movement functionality for the Queen class
+I have added movement functionality for the Queen class.
 
 ## [08-09-2024]
 
 ### Added
 
-Added functionality to declare victory when one of the players runs out of pieces
+I have added functionality to declare victory when one of the players runs out of pieces.
 
 ## [09-09-2024]
 
 ### Added
 
-The function that declares a winner when one of the players runs out of pieces has been refactored to reduce cognitive complexity.
-The Queen, Rook, and Bishop code has been fixed by moving it to the parent Piece class, so that they inherit functionality and there is no code duplication.
+I have refactored the function that declares a winner when one of the players runs out of pieces to reduce cognitive complexity.
+I have fixed the Queen, Rook, and Bishop code by moving it to the parent Piece class. This eliminates code duplication and ensures that they inherit functionality.
 
 ## [10-09-2024]
 
 ### Edited
 
-Fixed the feature so that there is no winner if one of the players quits the game. Currently, the situation must be mutually agreed upon for the game to end in a draw. This repeats in a loop, so that if one of the players quits, the other is forced to accept it.
-Child class functions (that share motion logic) have been added to the Piece class so that functions can be reused.
+I fixed the feature so that there is no winner if one of the players quits the game. Currently, the game must end in a draw if both players agree. If one player quits, the other must accept it.
+We have added child class functions to the Piece class to reuse functions.
+
+## [11-09-2024]
+
+### Edited
+
+Edit the icons of the pieces for a more pleasant and intuitive visual experience.
+
+### Added
+
+Add a function that determines if there is a pawn on the opposite first row.
+Add an input function that, if this is true, gives the user options to exchange the pawn for another piece (other than another pawn or a king).
+On the board, add a function so that if this is true, the piece on the board is changed
+To the Winner_move function that already ended the game if one of the players ran out of pieces, I added an additional function has_king to declare a winner and end the game if any of the players has their king piece captured
