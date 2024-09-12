@@ -202,8 +202,11 @@ Separate the tests so that each piece has its own file independent of the others
 
 ### Edited
 
+README.md, with an introduction to the planned project dedicated to the GIT community and a detailed explanation of how Chess should be configured for test mode and for game mode, both deployed with Docker
 Fixed pawn movement logic, which incorrectly enabled vertical capture. Now only captures diagonally.
 Code refactoring in ChessCli to reduce the logical complexity of the has_king and attempt_move functions
 Minor fix in the board code to comply with SOLID principles
+
+### Added
+
 Added DockerFile to be able to deploy applications inside virtual containers
-Added README.md, with an introduction to the planned project dedicated to the GIT community and a detailed explanation of how Chess should be configured for test mode and for game mode, both deployed with Docker
