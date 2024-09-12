@@ -13,19 +13,16 @@ class Board:
         if piece.is_valid_move(new_x, new_y, self):
             # La posicion actual de la pieza, se guarda en variables
             old_x, old_y = piece.get_position()
-
             # Se vacia la posicion anterior
             self.board[old_y][old_x] = None
-
-            # Si hay una pieza en la nueva posición, se elimina
-            if self.board[new_y][new_x]:
-                self.board[new_y][new_x] = None
-
             # Para insertar la nueva pieza en el lugar
             self.board[new_y][new_x] = piece
             piece.set_position(new_x, new_y)
             return True
         return False
+
+    def remove_piece_at(self, x, y):
+        self.board[y][x] = None
 
     def print_board(self):
         self.mark_superior()

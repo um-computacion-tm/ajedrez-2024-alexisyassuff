@@ -27,7 +27,7 @@ class Piece:
         target_piece = board.get_piece_at(new_x, new_y)
         return target_piece and target_piece.get_color() == self.__color__
 
-    def is_valid_piece_move(self, new_x, new_y, board):
+    def is_valid_move(self, new_x, new_y, board):
         raise NotImplementedError(
             "Este método debe ser implementado por las subclases")
 

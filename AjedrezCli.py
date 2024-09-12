@@ -59,20 +59,19 @@ class AjedrezCli:
         king = King(4, row, color)
         self.board.place_piece(king)
 
-# Funcion del controlador que gestiona los flujos de juego
+    # Funcion del controlador que gestiona los flujos de juego con prints e input para el movimiento de pieza
     def play_turn(self):
         if self.game_over:
             return False  # Terminar el juego si game_over es True
-
         self.board.print_board()
-        print(f"Turno de {self.current_turn}")
 
+        print(f"Turno de {self.current_turn}")
         origin = self.get_user_input(
             "Ingrese la posición de origen (por ejemplo, D2) o 'q' para rendirse: ")
+
         if origin.lower() == 'q':
             self.handle_surrender()
             return False  # Indicar que el juego ha terminado
-
         destination = self.get_user_input(
             "Ingrese la posición de destino (por ejemplo, D3): ")
 
@@ -88,11 +87,13 @@ class AjedrezCli:
     def get_user_input(self, prompt):
         return input(prompt)
 
+    # Convierte coordenadas de Ajedrez en coordenadas de matriz
     def get_positions_from_notation(self, origin, destination):
         x1, y1 = self.board.get_position_from_notation(origin)
         x2, y2 = self.board.get_position_from_notation(destination)
         return x1, y1, x2, y2
 
+    # Metodo donde se verifica si el movimiento es válido y se mueve la pieza si es así
     def attempt_move(self, x1, y1, x2, y2):
         piece = self.board.get_piece_at(x1, y1)
         if self.is_valid_move(piece):
@@ -104,6 +105,7 @@ class AjedrezCli:
         else:
             print("No hay pieza en la posición inicial o no es tu turno")
 
+    # Funcion que gestiona la declaracion de ganador del juego y la finalizacion cuando hay un movimiento ganador
     def winner_move(self):
         self.switch_turn_and_get_other_player()
         if not self.has_pieces(self.current_turn):
@@ -114,12 +116,26 @@ class AjedrezCli:
             self.declare_winner()
             self.game_over = True
 
+    #  Funcion que verifica si un jugador tiene a su King en el tablero de ajedrez
+
     def has_king(self, color):
+        return self.has_piece(color, King)
+
+    #  Funcion que verifica si un jugador tiene piezas en el tablero de ajedrez
+    def has_piece(self, color, piece_type):
         for row in self.board.board:
-            for piece in row:
-                if isinstance(piece, King) and piece.get_color() == color:
-                    return True
+            if self.has_piece_in_row(row, color, piece_type):
+                return True
         return False
+
+    def has_piece_in_row(self, row, color, piece_type):
+        for piece in row:
+            if self.is_piece_of_color(piece, color, piece_type):
+                return True
+        return False
+
+    def is_piece_of_color(self, piece, color, piece_type):
+        return isinstance(piece, piece_type) and piece.get_color() == color
 
     def is_valid_piece_move(self, piece, x2, y2):
         return piece and self.is_valid_move(piece) and self.board.is_valid_destination(piece, x2, y2)
@@ -127,8 +143,7 @@ class AjedrezCli:
     def is_valid_move(self, piece):
         return piece and piece.get_color() == self.current_turn
 
-
-# Funcion que determina si el jugador tiene piezas en su poder
+    # Funcion que determina si el jugador tiene piezas en su poder
 
     def has_pieces(self, color):
         for row in self.board.board:
@@ -142,6 +157,7 @@ class AjedrezCli:
                 return True
         return False
 
+    # Funcion de bucle para que si un jugador se rinde, el otro tambien lo haga
     def handle_surrender(self):
         print(f"El jugador {self.current_turn} se ha rendido.")
         for i in range(1000):
@@ -153,17 +169,22 @@ class AjedrezCli:
             else:
                 continue
 
+    # Verifica  si el oponente se ha rendido luego de que un jugador lo haga
+
     def other_player_surrendered(self):
         return self.get_user_input(f"El jugador {self.switch_turn_and_get_other_player()},  debe presionar 'q' y rendirse: ").lower() == 'q'
 
+    # Metodo que cambia el turno actual y deveulve el color del jugador que tiene el turno siguiente
     def switch_turn_and_get_other_player(self):
         self.current_turn = 'black' if self.current_turn == 'white' else 'white'
         return self.current_turn
 
+    # Método que declara el ganador del juego
     def declare_winner(self):
         winner = 'black' if self.current_turn == 'white' else 'white'
         print(f"El jugador {winner} ha ganado la partida.")
 
+    # Funcion de prints e inputs para promover un peón a otra pieza cuando llega al final del tablero
     def promote_pawn(self, pawn, new_x, new_y):
         print("El peón ha llegado al final del tablero, Elegì de las opciones, la nueva pieza:")
         print("1. Queen")

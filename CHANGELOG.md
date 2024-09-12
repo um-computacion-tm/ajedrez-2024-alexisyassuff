@@ -197,3 +197,13 @@ Add an input function that, if this is true, gives the user options to exchange 
 On the board, add a function so that if this is true, the piece on the board is changed
 To the Winner_move function that already ended the game if one of the players ran out of pieces, I added an additional function has_king to declare a winner and end the game if any of the players has their king piece captured
 Separate the tests so that each piece has its own file independent of the others, achieving easier access to each one and better readability
+
+## [12-09-2024]
+
+### Edited
+
+Fixed pawn movement logic, which incorrectly enabled vertical capture. Now only captures diagonally.
+Code refactoring in ChessCli to reduce the logical complexity of the has_king and attempt_move functions
+Minor fix in the board code to comply with SOLID principles
+Added DockerFile to be able to deploy applications inside virtual containers
+Added README.md, with an introduction to the planned project dedicated to the GIT community and a detailed explanation of how Chess should be configured for test mode and for game mode, both deployed with Docker

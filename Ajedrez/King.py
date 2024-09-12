@@ -1,3 +1,6 @@
+from Ajedrez.Board import Board
+import unittest
+from Ajedrez.Pawn import Pawn
 from Ajedrez.Piece import Piece
 
 
@@ -17,11 +20,3 @@ class King(Piece):
 
     def is_adjacent_move(self, new_x, new_y):
         return abs(new_x - self.__x__) <= 1 and abs(new_y - self.__y__) <= 1
-
-    def is_king_captured(self, color):
-        """Verifica si el rey del color especificado aún está en el tablero."""
-        for row in self.board.board:
-            for piece in row:
-                if isinstance(piece, King) and piece.get_color() == color:
-                    return False  # El rey sigue en el tablero
-        return True  # El rey ha sido capturado
