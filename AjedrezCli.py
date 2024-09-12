@@ -96,16 +96,37 @@ class AjedrezCli:
     # Metodo donde se verifica si el movimiento es válido y se mueve la pieza si es así
     def attempt_move(self, x1, y1, x2, y2):
         piece = self.board.get_piece_at(x1, y1)
-        if self.is_valid_move(piece):
-            if self.board.move_piece(piece, x2, y2):
-                if isinstance(piece, Pawn) and piece.is_promotion_move(y2):
-                    self.promote_pawn(piece, x2, y2)
-                self.winner_move()
-
+        if self.is_valid_piece(piece):
+            self.handle_move(piece, x2, y2)
         else:
-            print("No hay pieza en la posición inicial o no es tu turno")
+            self.invalid_move_message()
+
+    def is_valid_piece(self, piece):
+        return piece and piece.get_color() == self.current_turn
+
+    def handle_move(self, piece, x2, y2):
+        if self.is_valid_move_for_piece(piece, x2, y2):
+            self.execute_piece_move(piece, x2, y2)
+        else:
+            self.invalid_move_message()
+
+    def is_valid_move_for_piece(self, piece, x2, y2):
+        return piece.is_valid_move(x2, y2, self.board)
+
+    def execute_piece_move(self, piece, x2, y2):
+        if self.board.move_piece(piece, x2, y2):
+            self.check_pawn_promotion(piece, x2, y2)
+            self.winner_move()
+
+    def check_pawn_promotion(self, piece, x2, y2):
+        if isinstance(piece, Pawn) and piece.is_promotion_move(y2):
+            self.promote_pawn(piece, x2, y2)
+
+    def invalid_move_message(self):
+        print("No hay pieza en la posición inicial o no es tu turno")
 
     # Funcion que gestiona la declaracion de ganador del juego y la finalizacion cuando hay un movimiento ganador
+
     def winner_move(self):
         self.switch_turn_and_get_other_player()
         if not self.has_pieces(self.current_turn):
@@ -172,7 +193,7 @@ class AjedrezCli:
     # Verifica  si el oponente se ha rendido luego de que un jugador lo haga
 
     def other_player_surrendered(self):
-        return self.get_user_input(f"El jugador {self.switch_turn_and_get_other_player()},  debe presionar 'q' y rendirse: ").lower() == 'q'
+        return self.get_user_input(f"El jugador oponente debe presionar 'q' y rendirse: ").lower() == 'q'
 
     # Metodo que cambia el turno actual y deveulve el color del jugador que tiene el turno siguiente
     def switch_turn_and_get_other_player(self):

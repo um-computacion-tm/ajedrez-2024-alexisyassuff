@@ -206,6 +206,7 @@ README.md, with an introduction to the planned project dedicated to the GIT comm
 Fixed pawn movement logic, which incorrectly enabled vertical capture. Now only captures diagonally.
 Code refactoring in ChessCli to reduce the logical complexity of the has_king and attempt_move functions
 Minor fix in the board code to comply with SOLID principles
+Refactored the du functions to make them more efficient based on the proposal from CodeClimate.
 
 ### Added
 
