@@ -1,17 +1,13 @@
-from Ajedrez.Board import Board
-import unittest
-from Ajedrez.Pawn import Pawn
 from Ajedrez.Piece import Piece
 
 
 class King(Piece):
-    def __init__(self, x, y, color):
-        if color == 'white':
-            icon = '♚'
-        elif color == "black":
-            icon = '♔'
+    white_icon = '♚'
+    black_icon = '♔'
 
-        super().__init__(x, y, color, icon)
+    def __init__(self, x, y, color):
+
+        super().__init__(x, y, color)
 
     def is_valid_move(self, new_x, new_y, board):
         if self.is_adjacent_move(new_x, new_y) and not self.is_same_color_piece(new_x, new_y, board):

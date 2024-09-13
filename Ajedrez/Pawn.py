@@ -1,31 +1,49 @@
 from Ajedrez.Piece import Piece
-from Ajedrez.Piece import Piece
 
 
 class Pawn(Piece):
-    def __init__(self, x, y, color):
-        icon = '♟' if color == 'white' else '♙'
+    white_icon = '♟'
+    black_icon = '♙'
 
-        super().__init__(x, y, color, icon)
+    def __init__(self, x, y, color):
+        super().__init__(x, y, color)
 
     def is_valid_move(self, new_x, new_y, board):
         if self.__color__ == 'white':
-            return (self.is_initial_move(new_x, new_y) or
+            return (self.is_initial_move(new_x, new_y, board) or
                     self.is_forward_move(new_x, new_y, board) or
                     self.is_capture_move(new_x, new_y, board))
 
         else:
-            return (self.is_initial_move(new_x, new_y, is_black=True) or
+            return (self.is_initial_move(new_x, new_y, board, is_black=True) or
                     self.is_forward_move(new_x, new_y, board, is_black=True) or
                     self.is_capture_move(new_x, new_y, board, is_black=True))
 
-    def is_initial_move(self, new_x, new_y, is_black=False):
-        return (self.is_same_column(new_x) and
-                self.is_valid_initial_row(is_black) and
-                self.is_valid_initial_move(new_y, is_black))
+    def is_initial_move(self, new_x, new_y, board, is_black=False):
+        direction = -1 if is_black else 1
+
+        # El movimiento inicial debe ser en la misma columna y en la fila inicial
+        if not (self.is_same_column(new_x) and self.is_valid_initial_row(is_black)):
+            return False
+
+        # Si es un movimiento de 2 casillas, ambas deben estar vacías
+        if new_y == self.__y__ + 2 * direction:
+            return (not self.has_piece_ahead(self.__y__ + direction, board) and
+                    not self.has_piece_ahead(self.__y__ + 2 * direction, board))
+
+        # Si es un movimiento de 1 casilla, la siguiente casilla debe estar vacía
+        if new_y == self.__y__ + direction:
+            return not self.has_piece_ahead(self.__y__ + direction, board)
+
+        return False
 
     def is_forward_move(self, new_x, new_y, board, is_black=False):
-        return self.is_same_column(new_x) and self.is_valid_forward_move(new_y, board, is_black)
+        direction = -1 if is_black else 1
+
+        # El movimiento hacia adelante debe ser en la misma columna y solo 1 casilla
+        return (self.is_same_column(new_x) and
+                new_y == self.__y__ + direction and
+                not self.has_piece_ahead(new_y, board))
 
     def is_same_column(self, new_x):
         return new_x == self.__x__

@@ -1,12 +1,8 @@
-from Ajedrez.Board import Board
-
-
 class Piece:
-    def __init__(self, x, y, color, icon):
+    def __init__(self, x, y, color):
         self.__x__ = x
         self.__y__ = y
         self.__color__ = color
-        self.__icon__ = icon
 
     def get_position(self):
         return self.__x__, self.__y__
@@ -19,9 +15,9 @@ class Piece:
         return self.__color__
 
     def get_icon(self):
-        return self.__icon__
+        return self.white_icon if self.__color__ == 'white' else self.black_icon
 
-# Verificar si la nueva posición está ocupada por una pieza del mismo color
+    # Verificar si la nueva posición está ocupada por una pieza del mismo color
 
     def is_same_color_piece(self, new_x, new_y, board):
         target_piece = board.get_piece_at(new_x, new_y)
@@ -74,3 +70,15 @@ class Piece:
 
     def is_diagonal_move(self, new_x, new_y):
         return abs(new_x - self.__x__) == abs(new_y - self.__y__) and (new_x != self.__x__ and new_y != self.__y__)
+
+    def is_valid_straight_move(self, new_x, new_y, board):
+        if self.is_straight_move(new_x, new_y):
+            if self.is_path_clear(new_x, new_y, board) and not self.is_same_color_piece(new_x, new_y, board):
+                return True
+        return False
+
+    def is_valid_diagonal_move(self, new_x, new_y, board):
+        if self.is_diagonal_move(new_x, new_y):
+            if self.is_path_clear(new_x, new_y, board) and not self.is_same_color_piece(new_x, new_y, board):
+                return True
+        return False

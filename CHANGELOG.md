@@ -211,3 +211,13 @@ Refactored the du functions to make them more efficient based on the proposal fr
 ### Added
 
 Added DockerFile to be able to deploy applications inside virtual containers
+
+## [13-09-2024]
+
+### Edited
+
+The last function of the pawn has been fixed, which on the initial move would move regardless of whether there was a friendly or enemy piece. It now checks that the square is empty.
+Correct duplication issues reported by Code Climate in defining part colors and icons
+Renamed files that were incorrectly named AjederzCli.py and Chess.py, which should have been named Cli.py
+Initialization of parts is now the responsibility of the board, thus removing responsibility from the controller and reducing the huge amount of functionality that Code Climate indicates.
+Try refactoring functions so that the Rook and Queen share functionality and eliminate duplication.
