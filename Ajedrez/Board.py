@@ -13,18 +13,18 @@ class Board:
         self.initialize_pieces()
 
     def initialize_pieces(self):
-        # self.initialize_pawns(1, 'white')
         self.initialize_rooks(0, 'white')
-        # self.initialize_knights(0, 'white')
-        # self.initialize_bishops(0, 'white')
         self.initialize_queen(0, 'white')
         self.initialize_king(0, 'white')
-        # self.initialize_pawns(6, 'black')
         self.initialize_rooks(7, 'black')
-        # self.initialize_knights(7, 'black')
-        # self.initialize_bishops(7, 'black')
         self.initialize_queen(7, 'black')
         self.initialize_king(7, 'black')
+        self.initialize_knights(7, 'black')
+        self.initialize_bishops(7, 'black')
+        self.initialize_pawns(6, 'black')
+        self.initialize_knights(0, 'white')
+        self.initialize_pawns(1, 'white')
+        self.initialize_bishops(0, 'white')
 
     def initialize_pawns(self, row, color):
         for i in range(8):

@@ -21,21 +21,30 @@ class Pawn(Piece):
 
     def is_initial_move(self, new_x, new_y, board, is_black=False):
         direction = -1 if is_black else 1
-
-        # El movimiento inicial debe ser en la misma columna y en la fila inicial
-        if not (self.is_same_column(new_x) and self.is_valid_initial_row(is_black)):
+        if not self.is_same_column(new_x) or not self.is_valid_initial_row(is_black):
             return False
-
-        # Si es un movimiento de 2 casillas, ambas deben estar vacías
         if new_y == self.__y__ + 2 * direction:
-            return (not self.has_piece_ahead(self.__y__ + direction, board) and
-                    not self.has_piece_ahead(self.__y__ + 2 * direction, board))
-
-        # Si es un movimiento de 1 casilla, la siguiente casilla debe estar vacía
+            return self.is_valid_double_move(board, direction)
         if new_y == self.__y__ + direction:
-            return not self.has_piece_ahead(self.__y__ + direction, board)
-
+            return self.is_valid_single_move(board, direction)
         return False
+
+    def is_same_column(self, new_x):
+        return self.__x__ == new_x
+
+    def is_valid_initial_row(self, is_black):
+        initial_row = 6 if is_black else 1
+        return self.__y__ == initial_row
+
+    def is_valid_double_move(self, board, direction):
+        return (not self.has_piece_ahead(self.__y__ + direction, board) and
+                not self.has_piece_ahead(self.__y__ + 2 * direction, board))
+
+    def is_valid_single_move(self, board, direction):
+        return not self.has_piece_ahead(self.__y__ + direction, board)
+
+    def has_piece_ahead(self, y, board):
+        return board.get_piece_at(self.__x__, y) is not None
 
     def is_forward_move(self, new_x, new_y, board, is_black=False):
         direction = -1 if is_black else 1

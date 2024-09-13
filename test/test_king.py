@@ -1,3 +1,5 @@
+from Ajedrez.King import King
+from Ajedrez.Board import Board
 import unittest
 from Ajedrez.King import King
 from Ajedrez.Rook import Rook
@@ -50,6 +52,10 @@ class TestKing(unittest.TestCase):
         self.board.place_piece(own_rook)
         self.assertFalse(self.king_white.is_valid_move(3, 0, self.board))
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_valid_move_adjacent(self):
+        self.board = Board()
+        self.king_white = King(4, 4, 'white')
+        self.board.place_piece(self.king_white)
+        # Movimiento válido del rey a una casilla adyacente
+        # Ajustar posición si es necesario
+        self.assertTrue(self.king_white.is_valid_move(3, 4, self.board))

@@ -2,33 +2,13 @@ from Ajedrez.Pawn import Pawn
 from Ajedrez.Board import Board
 from Ajedrez.Queen import Queen
 from Ajedrez.Piece import Piece
+from Ajedrez.Piece import Piece
+from Ajedrez.Board import Board
 import unittest
 
 
 class TestBoard(unittest.TestCase):
-    def test_board_initialization(self):
-        board = Board()
-        for row in board.board:
-            for cell in row:
-                self.assertIsNone(cell)
 
-    def test_place_piece(self):
-        board = Board()
-        piece = Piece(0, 0, 'white', 'P')
-        board.place_piece(piece)
-        self.assertEqual(board.board[0][0], piece)
-
-    def test_place_multiple_pieces(self):
-        board = Board()
-        piece1 = Piece(0, 0, 'white', 'P')
-        piece2 = Piece(7, 7, 'black', 'P')
-        board.place_piece(piece1)
-        self.assertEqual(board.board[0][0], piece1)
-        board.place_piece(piece2)
-        self.assertEqual(board.board[7][7], piece2)
-
-
-class TestBoardMovePiece(unittest.TestCase):
     def setUp(self):
         self.board = Board()
         self.pawn = Pawn(1, 1, 'white')
@@ -75,6 +55,26 @@ class TestBoardMethods(unittest.TestCase):
 
     def test_print_board(self):
         self.board.print_board()
+
+    def test_place_piece(self):
+        board = Board()
+        piece = Piece(0, 0, 'white')  # Elimina el argumento extra ('P')
+        board.place_piece(piece)
+        self.assertEqual(board.get_piece_at(0, 0), piece)
+
+    def test_place_multiple_pieces(self):
+        board = Board()
+        piece1 = Piece(0, 0, 'white')
+        piece2 = Piece(7, 7, 'black')
+        board.place_piece(piece1)
+        board.place_piece(piece2)
+        self.assertEqual(board.get_piece_at(0, 0), piece1)
+        self.assertEqual(board.get_piece_at(7, 7), piece2)
+
+    def test_get_piece_at_empty_square(self):
+        board = Board()
+        piece = board.get_piece_at(3, 3)
+        self.assertIsNone(piece)
 
 
 if __name__ == '__main__':

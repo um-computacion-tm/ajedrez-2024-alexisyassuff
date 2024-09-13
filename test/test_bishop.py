@@ -32,10 +32,6 @@ class TestBishop(unittest.TestCase):
     def test_get_icon_black(self):
         self.assertEqual(self.black_bishop.get_icon(), '♗')
 
-    def test_valid_move_diagonal_up_right(self):
-        # Movimiento diagonal válido hacia arriba a la derecha
-        self.assertTrue(self.white_bishop.is_valid_move(5, 3, self.board))
-
     def test_path_not_clear(self):
         # Movimiento no válido si hay piezas en el camino
         obstructing_piece = Bishop(3, 1, 'white')

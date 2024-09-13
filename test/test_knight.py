@@ -1,6 +1,4 @@
 import unittest
-
-
 from Ajedrez.Knight import Knight
 from Ajedrez.Board import Board
 

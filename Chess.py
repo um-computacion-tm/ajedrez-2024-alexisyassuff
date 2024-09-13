@@ -1,7 +1,7 @@
 from Ajedrez.Board import Board
 from Ajedrez.Pawn import Pawn
 from Ajedrez.Queen import Queen
-from Ajedrez.King import King
+from Ajedrez.Player import Player
 from Ajedrez.Rook import Rook
 from Ajedrez.Bishop import Bishop
 from Ajedrez.Knight import Knight
@@ -10,6 +10,7 @@ from Ajedrez.Knight import Knight
 class Chess:
     def __init__(self):
         self.board = Board()
+        self.player = Player(self.board)
         self.current_turn = 'white'
         self.game_over = False  # Variable para controlar si el juego terminó
 
@@ -59,9 +60,6 @@ class Chess:
     def is_valid_piece(self, piece):
         return piece and piece.get_color() == self.current_turn
 
-    def is_piece_of_color(self, piece, color, piece_type):
-        return isinstance(piece, piece_type) and piece.get_color() == color
-
     def handle_move(self, piece, x2, y2):
         if self.is_valid_move_for_piece(piece, x2, y2):
             self.execute_piece_move(piece, x2, y2)
@@ -84,48 +82,18 @@ class Chess:
 
     def winner_move(self):
         self.switch_turn_and_get_other_player()
-        if not self.has_pieces(self.current_turn):
+        if not self.player.has_pieces(self.current_turn):
             self.declare_winner()
             self.game_over = True
-        elif not self.has_king(self.current_turn):
+        elif not self.player.has_king(self.current_turn):
             print("¡Atencion! Rey capturado")
             self.declare_winner()
             self.game_over = True
-
-    #  Funcion que verifica si un jugador tiene a su King en el tablero de ajedrez
-
-    def has_king(self, color):
-        return self.has_piece(color, King)
-
-    #  Funcion que verifica si un jugador tiene piezas en el tablero de ajedrez
-    def has_piece(self, color, piece_type):
-        for row in self.board.board:
-            if self.has_piece_in_row(row, color, piece_type):
-                return True
-        return False
-
-    def has_piece_in_row(self, row, color, piece_type):
-        for piece in row:
-            if self.is_piece_of_color(piece, color, piece_type):
-                return True
-        return False
 
     def is_valid_move(self, piece):
         return piece and piece.get_color() == self.current_turn
 
     # Funcion que determina si el jugador tiene piezas en su poder
-
-    def has_pieces(self, color):
-        for row in self.board.board:
-            if self.row_has_piece_of_color(row, color):
-                return True
-        return False
-
-    def row_has_piece_of_color(self, row, color):
-        for piece in row:
-            if piece and piece.get_color() == color:
-                return True
-        return False
 
     # Funcion de bucle para que si un jugador se rinde, el otro tambien lo haga
     def handle_surrender(self):

@@ -216,8 +216,12 @@ Added DockerFile to be able to deploy applications inside virtual containers
 
 ### Edited
 
-The last function of the pawn has been fixed, which on the initial move would move regardless of whether there was a friendly or enemy piece. It now checks that the square is empty.
-Correct duplication issues reported by Code Climate in defining part colors and icons
-Renamed files that were incorrectly named AjederzCli.py and Chess.py, which should have been named Cli.py
-Initialization of parts is now the responsibility of the board, thus removing responsibility from the controller and reducing the huge amount of functionality that Code Climate indicates.
-Try refactoring functions so that the Rook and Queen share functionality and eliminate duplication.
+Fixed the last pawn function, which on initial move moved regardless of whether there was a friendly or enemy piece. It now checks that the square is empty.
+Fixed duplication issues reported by Code Climate when defining piece colors and icons
+Renamed files that were incorrectly named ChessCli.py and Chess.py, which should have been named Cli.py
+Initialization of pieces is now the responsibility of the board, which takes responsibility away from the controller and reduces the huge amount of functionality Code Climate reports.
+Refactored functions so that the Rook and Queen share functionality and duplication is removed.
+
+### Added
+
+Created the Player class to be responsible for checking if the player still has pieces on the board and if their king is present on the board. This was done because the Chess.py class had more functionality than Code Climate suggested
