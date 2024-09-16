@@ -72,15 +72,17 @@ class Piece:
         return abs(new_x - self.__x__) == abs(new_y - self.__y__) and (new_x != self.__x__ and new_y != self.__y__)
 
     # Funcion que hace la verificacion de casilla vacia y color de pieza que venia siendo duplicada
+
     def check_move(self, new_x, new_y, board):
         return self.is_path_clear(new_x, new_y, board) and not self.is_same_color_piece(new_x, new_y, board)
 
-    def is_valid_straight_move(self, new_x, new_y, board):
-        if self.is_straight_move(new_x, new_y):
+    def is_valid_move_type(self, new_x, new_y, board, move_type_check):
+        if move_type_check(new_x, new_y):
             return self.check_move(new_x, new_y, board)
         return False
 
+    def is_valid_straight_move(self, new_x, new_y, board):
+        return self.is_valid_move_type(new_x, new_y, board, self.is_straight_move)
+
     def is_valid_diagonal_move(self, new_x, new_y, board):
-        if self.is_diagonal_move(new_x, new_y):
-            return self.check_move(new_x, new_y, board)
-        return False
+        return self.is_valid_move_type(new_x, new_y, board, self.is_diagonal_move)

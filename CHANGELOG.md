@@ -225,3 +225,9 @@ Refactored functions so that the Rook and Queen share functionality and duplicat
 ### Added
 
 Created the Player class to be responsible for checking if the player still has pieces on the board and if their king is present on the board. This was done because the Chess.py class had more functionality than Code Climate suggested
+
+## [14-09-2024]
+
+### Edited
+
+Try refactoring the movement functions so that the Rook and Queen share functionality and duplication is eliminated.
